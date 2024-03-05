@@ -1,0 +1,27 @@
+:root{
+    --courner-bend-amount:10px
+}
+
+.row{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.card{
+    box-shadow: 0px 0px 10px 10px gray;
+    border-radius: var(--courner-bend-amount);
+    width: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.img{
+    max-width: 400px;
+    min-height: 200px;
+    border-radius: var(--courner-bend-amount);
+}
