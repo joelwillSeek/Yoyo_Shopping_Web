@@ -1,5 +1,5 @@
 :root{
-    --courner-bend-amount:10px
+    --corner-bend-amount:10px
 }
 
 .row{
@@ -10,18 +10,19 @@
 }
 
 .card{
-    box-shadow: 0px 0px 10px 10px gray;
-    border-radius: var(--courner-bend-amount);
+    box-shadow: 0px 0px 10px 1px gray;
+    border-radius: var(--corner-bend-amount);
     width: 400px;
     margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 10px;
 }
 
 .img{
     max-width: 400px;
-    min-height: 200px;
-    border-radius: var(--courner-bend-amount);
+    max-height: 200px;
+    border-radius: var(--corner-bend-amount);
 }

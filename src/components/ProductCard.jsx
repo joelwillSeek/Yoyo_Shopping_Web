@@ -10,7 +10,7 @@ function ProductCard({price,title,src}){
         <p><b>{title}</b></p>
         <p><b>Price: {price}</b></p>
         </div>
-
+        
         <div className={styles.row}>
         </div>
     </div>;

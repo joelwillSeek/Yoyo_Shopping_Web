@@ -1,10 +1,19 @@
-import ProductCard from "./components/ProductCard.jsx";
-import testImage from "../template.png"
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Body from "./components/Body.jsx";
+import TopPanel from "./components/TopPanel.jsx";
+
+
 
 function App () {
-    return <ProductCard title="Yoyo Shopping" price={100} src={testImage}></ProductCard>;
+   
+
+    return <>
+    <TopPanel></TopPanel>
+    <Body></Body>
+    </>;
   }
 
-export default App;
   
+
+export default App;
+   
