@@ -25,6 +25,7 @@
     "webpack-dev-server": "^5.0.2"
   },
   "dependencies": {
+    "firebase": "^10.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-loader-spinner": "^6.1.6",
