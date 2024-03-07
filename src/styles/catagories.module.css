@@ -1,0 +1,13 @@
+.searchSvg{
+    width: 20px;
+    color: white;
+}
+
+.category{
+    margin:0 1rem;
+    padding: 0rem 1rem;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

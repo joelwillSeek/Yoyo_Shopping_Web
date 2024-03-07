@@ -2,31 +2,48 @@
     --corner-bend-amount:10px
 }
 
-.row{
+.groupOfCardContent{
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     width: 100%;
 }
 
+.title{
+    font-weight: bolder;
+    font-size:1rem;
+    margin: 1rem 0;
+}
+
+.description{
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.price{
+    align-self: start;
+    margin:0;
+    font-weight: bold;
+    font-size: small;
+    margin-top: 1rem;
+}
+
 .card{
     /* border: 2px solid #000; */
-    padding: 1rem;
-    border-radius: var(--corner-bend-amount);
-    width: 400px;
-    margin: auto;
+    /* border-radius: var(--corner-bend-amount); */
+    width: 300px;
     justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 50px;
     margin: 10px;
     transition: border-color ease 300ms;
 }
 
-.card:hover{
+/* .card:hover{
     border-color: var(--accent);
-}
+} */
 
 .img{
     max-width: 200px;

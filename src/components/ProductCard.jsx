@@ -1,19 +1,22 @@
-import styles from "../styles/card.module.css"
+import styles from "../styles/card.module.css";
 import React from "react";
 
-function ProductCard({price,title,src}){
+function ProductCard({ price, title, src }) {
+  return (
+    <div className={styles.card}>
+      <img src={src} className={styles.img} />
 
-    return <div className={styles.card}>
-        <img src={src} className={styles.img} />
-        
-        <div className={styles.row}>
-        <p><b>{title}</b></p>
-        <p><b>Price: {price}</b></p>
-        </div>
-        
-        <div className={styles.row}>
-        </div>
-    </div>;
+      <div className={styles.groupOfCardContent}>
+        <p className={styles.title}>{title}</p>
+        <p className={styles.description}>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias dolor
+          omnis iste maiores? Dolores maiores magni reiciendis voluptates dolor
+          exercitationem.
+        </p>
+        <p className={styles.price}>Price: ${price} Br</p>
+      </div>
+    </div>
+  );
 }
 
-export default ProductCard; 
+export default ProductCard;
