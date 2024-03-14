@@ -7,26 +7,24 @@ import {
   getDocs,
   query,
   where,
-  getDoc,
+  DocumentData,
+  documentId,
 } from "firebase/firestore";
 import { db } from "./firebaseSDK";
+import Product from "./Product";
 
-/**
- * thinking of making product a class
- */
+const collectionName = "Products";
 
-let collectionName = "Products";
-
-/**
- *
- * @param {{ id, title, price, image, description,category }} param
- * @returns
- */
-export let addAProduct = async (product:Product) => {
+export let addAProduct = async (product: Product) => {
   let result = false;
 
+  const { id, ...excludeId } = product;
   try {
-    await addDoc(collection(db, collectionName),product);
+    await addDoc(collection(db, collectionName), { ...excludeId }).then(
+      (doc) => {
+        console.log(doc);
+      }
+    );
     result = true;
     alert("success");
   } catch (e) {
@@ -36,63 +34,88 @@ export let addAProduct = async (product:Product) => {
   return result;
 };
 
-export let removeAProduct = async (id) => {
+export let removeAProduct = async (product: Product) => {
   let result = false;
-
-  if (id != null) {
-    try {
-      await deleteDoc(doc(db, collectionName, id));
-      result = true;
-      alert("success");
-    } catch (e) {
-      alert(e);
-    }
+  try {
+    await deleteDoc(doc(db, collectionName, `${product.id}`));
+    result = true;
+    alert("success");
+  } catch (e) {
+    alert(e);
   }
 
   return result;
 };
 
 //don't understand how to update
-export let updateAProduct = async (product:Product) => {
+export let updateAProduct = async (product: Product) => {
   let result = false;
 
-    try {
-      const docRef = doc(db, collectionName, product.id);
-      await updateDoc(docRef,{...product});
-      result = true;
-      alert("success");
-    } catch (e) {
-      alert(e);
-    }
-  
+  try {
+    const { id, ...excludeId } = product;
+
+    const docRef = doc(db, collectionName, `${id}`);
+
+    await updateDoc(docRef, { ...excludeId });
+    result = true;
+    alert("success");
+  } catch (e) {
+    alert(e);
+  }
 
   return result;
 };
 
 //don't understand how to get all and specific docs
-export let getAllProductsInCategory = async (category) => {
-  let result = false;
+export let getAllProductsInCategory = async (category: String) => {
+  let allProducts: Product[] = [];
   try {
     const queryRef = query(
       collection(db, collectionName),
-      where("category", "==", category)
+      where("category", "==", `${category}`)
     );
     const docSnap = await getDocs(queryRef);
 
     docSnap.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data()}`);
-    })
+      let eachDoc = new Product(
+        doc.data().title,
+        doc.data().price,
+        doc.data().image,
+        doc.data().description,
+        doc.data().category
+      );
+      eachDoc.ID = doc.id;
+      allProducts.push(eachDoc);
+    });
   } catch (e) {
-    console.log(e);
-  } finally {
-    alert(`Error fetching all products in ${category}`);
+    alert(e);
   }
+
+  return allProducts;
 };
 
-export let getAllProductsRegardsOfCategory = async () => {
+export let getAllProductsRegardlessOfCategory = async (): Promise<
+  Product[]
+> => {
+  let allProducts: Product[] = [];
   try {
-    await getDocs(collection(db, collectionName));
+    let queryRef = query(collection(db, collectionName));
+
+    (await getDocs(queryRef)).docs.forEach((doc) => {
+      let eachDoc = new Product(
+        doc.data().title,
+        doc.data().price,
+        doc.data().image,
+        doc.data().description,
+        doc.data().category
+      );
+      eachDoc.ID = doc.id;
+
+      allProducts.push(eachDoc);
+    });
   } catch (e) {
-  } finally {
+    alert(e);
   }
+
+  return allProducts;
 };

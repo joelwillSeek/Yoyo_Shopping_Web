@@ -42,11 +42,7 @@ module.exports = {
         test: /.(png|jpg|jpeg|svg)$/i,
         type: "asset/resource",
       },
-      {
-        test: /.ts$/i,
-        use: "ts-loader",
-        exclude: /node_modules/,
-      },
+      { test: /\.(ts|tsx)$/, loader: "ts-loader", exclude: /node_modules/ },
       {
         test: /.(js|jsx)$/,
         exclude: /node_modules/,
@@ -61,6 +57,6 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
 };
