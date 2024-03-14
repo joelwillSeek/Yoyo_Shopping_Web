@@ -1,17 +1,17 @@
 export default class Product {
-  id: String = "";
-  title: String;
-  price: Number;
-  image: String;
-  description: String;
-  category: String;
+  id: string = "";
+  title: string;
+  price: number;
+  image: string;
+  description: string;
+  category: string;
 
   constructor(
-    title: String,
-    price: Number,
-    image: String,
-    description: String,
-    category: String
+    title: string,
+    price: number,
+    image: string,
+    description: string,
+    category: string
   ) {
     this.title = title;
     this.price = price;
@@ -24,7 +24,7 @@ export default class Product {
     return this.id;
   }
 
-  set ID(value: String) {
+  set ID(value: string) {
     this.id = value;
   }
 }

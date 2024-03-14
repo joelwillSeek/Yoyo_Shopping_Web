@@ -1,22 +1,17 @@
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import Body from "./components/Body.jsx";
-import TopPanel from "./components/TopPanel.jsx";
+import Body from "./components/Body";
+import TopPanel from "./components/TopPanel";
 import "./styles/general.css";
-import Catagories from "./components/Catagories.jsx";
-import {
-  addAProduct,
-  getAllProductsInCategory,
-  getAllProductsRegardlessOfCategory,
-  removeAProduct,
-  updateAProduct,
-} from "./firebase/firebaseBackEnd.ts";
-import Product from "./firebase/Product";
+import Catagories from "./components/Catagories";
+import { getAllProductsRegardlessOfCategory } from "./firebase/firebaseBackEnd";
 
-function App() {
+const rootElement = document.getElementById("root");
+
+let App = () => {
   let [getApi, setApi] = useState(null);
   let [searchTerm, setSearchTerm] = useState("");
-
-  return <></>;
 
   let listToTestCatagories = [
     {
@@ -53,6 +48,13 @@ function App() {
     },
   ];
 
+  let getJsonFromApi = async (
+    setApi: React.Dispatch<React.SetStateAction<any>>
+  ) => {
+    let response = await getAllProductsRegardlessOfCategory();
+    setApi(response);
+  };
+
   useEffect(() => {
     getJsonFromApi(setApi);
   }, []);
@@ -72,17 +74,10 @@ function App() {
       <Body getApi={getApi} getSearch={searchTerm}></Body>
     </>
   );
-}
-
-let getJsonFromApi = async (setApi) => {
-  try {
-    let res = await fetch("https://fakestoreapi.com/products");
-    let json = await res.json();
-    setApi(json);
-  } catch (e) {
-    alert("Encountered Network Problems");
-    console.log(e);
-  }
 };
 
-export default App;
+createRoot(rootElement!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);

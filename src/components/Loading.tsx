@@ -2,16 +2,13 @@ import React, { useEffect, useRef } from 'react';
 import styles from '../styles/Loading.module.css';
 import { ThreeCircles } from 'react-loader-spinner';
 
-const Loading = ({ color }) => {
+const Loading = ({ color }:{color:string}) => {
 
-    let getDialog=useRef();
+    let getDialog=useRef<any>();
 
     useEffect(()=>{
-        /**
-         * @type {HTMLDialogElement}
-         */
-        let dialogRef=getDialog.current;
 
+        let dialogRef:HTMLDialogElement=getDialog.current;
         dialogRef.showModal();
     },[])
 

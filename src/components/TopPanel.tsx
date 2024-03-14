@@ -6,7 +6,7 @@ import styles from "../styles/toppanel.module.css"
  * @param {{setFilter:Array,getFilter:Array}}
  * @returns 
  */
-export default function TopPanel({setSearch}){
+export default function TopPanel({setSearch}:{setSearch:React.Dispatch<React.SetStateAction<string>>}){
 
 
     return <nav className={styles.nav}>

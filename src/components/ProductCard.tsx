@@ -1,10 +1,10 @@
 import styles from "../styles/card.module.css";
 import React from "react";
 
-function ProductCard({ price, title, src }) {
+function ProductCard({ price, title, image }:{price:number,title:string,image:string}) {
   return (
     <div className={styles.card}>
-      <img src={src} className={styles.img} />
+      <img src={image} className={styles.img} />
 
       <div className={styles.groupOfCardContent}>
         <p className={styles.title}>{title}</p>
