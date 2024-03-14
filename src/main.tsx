@@ -1,11 +1,12 @@
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Body from "./components/Body";
 import TopPanel from "./components/TopPanel";
 import "./styles/general.css";
 import Catagories from "./components/Catagories";
 import { getAllProductsRegardlessOfCategory } from "./firebase/firebaseBackEnd";
+import AdminPanel from "./components/AdminPanel";
 
 const rootElement = document.getElementById("root");
 
@@ -77,7 +78,14 @@ let App = () => {
 };
 
 createRoot(rootElement!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <BrowserRouter>
+    <React.StrictMode>
+      {/* routes */}
+      <Routes>
+        <Route index path="/" element={<App />} />
+        <Route path="Admin" element={<AdminPanel />} />
+        <Route path="*" element={<h1>No Such Page</h1>} />
+      </Routes>
+    </React.StrictMode>
+  </BrowserRouter>
 );
