@@ -10,4 +10,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color:white;
+    transition: background-color ease 300ms;
+}
+
+.category:hover{
+    background-color: var(--primary-color)!important;
 }

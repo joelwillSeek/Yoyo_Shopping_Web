@@ -5,7 +5,10 @@ import Body from "./components/Body";
 import TopPanel from "./components/TopPanel";
 import "./styles/general.css";
 import Catagories from "./components/Catagories";
-import { getAllProductsRegardlessOfCategory } from "./firebase/firebaseBackEnd";
+import {
+  getAllProductsRegardlessOfCategory,
+  getCategoriesList,
+} from "./firebase/firebaseBackEnd";
 import AdminPanel from "./components/AdminPanel";
 
 const rootElement = document.getElementById("root");
@@ -13,41 +16,15 @@ const rootElement = document.getElementById("root");
 let App = () => {
   let [getApi, setApi] = useState(null);
   let [searchTerm, setSearchTerm] = useState("");
+  let [listOfCategories, setListOfCategories] = useState([]);
 
-  let listToTestCatagories = [
-    {
-      name: "shoes",
-      color: "red",
-    },
-    {
-      name: "shoes",
-      color: "blue",
-    },
-    {
-      name: "shoes",
-      color: "green",
-    },
-    {
-      name: "shoes",
-      color: "orange",
-    },
-    {
-      name: "shoes",
-      color: "purple",
-    },
-    {
-      name: "shoes",
-      color: "gray",
-    },
-    {
-      name: "shoes",
-      color: "pink",
-    },
-    {
-      name: "shoes",
-      color: "yellow",
-    },
-  ];
+  let getJsonFromApiForCategories = async (
+    setApi: React.Dispatch<React.SetStateAction<any>>
+  ) => {
+    let response = await getCategoriesList();
+    console.log(response!["List"]);
+    setApi(response!["List"]);
+  };
 
   let getJsonFromApi = async (
     setApi: React.Dispatch<React.SetStateAction<any>>
@@ -58,18 +35,15 @@ let App = () => {
 
   useEffect(() => {
     getJsonFromApi(setApi);
+    getJsonFromApiForCategories(setListOfCategories);
   }, []);
 
   return (
     <>
       <TopPanel setSearch={setSearchTerm}></TopPanel>
       <div className="catagoriesContainer">
-        {listToTestCatagories.map((category, index) => (
-          <Catagories
-            key={index}
-            name={category.name}
-            color={category.color}
-          ></Catagories>
+        {listOfCategories.map((category, index) => (
+          <Catagories key={index} name={category} color={"#aaa"}></Catagories>
         ))}
       </div>
       <Body getApi={getApi} getSearch={searchTerm}></Body>

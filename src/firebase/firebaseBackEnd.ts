@@ -9,6 +9,7 @@ import {
   where,
   DocumentData,
   documentId,
+  getDoc,
 } from "firebase/firestore";
 import { db } from "./firebaseSDK";
 import Product from "./Product";
@@ -99,7 +100,7 @@ export let getAllProductsRegardlessOfCategory = async (): Promise<
 > => {
   let allProducts: Product[] = [];
   try {
-    let queryRef = query(collection(db, collectionName));
+    let queryRef = await query(collection(db, collectionName));
 
     (await getDocs(queryRef)).docs.forEach((doc) => {
       let eachDoc = new Product(
@@ -118,4 +119,22 @@ export let getAllProductsRegardlessOfCategory = async (): Promise<
   }
 
   return allProducts;
+};
+
+export let getCategoriesList = async (): Promise<DocumentData | undefined> => {
+  let allCategories: DocumentData | undefined;
+  let categoryCollectionName = "Other";
+
+  try {
+    const oneDoc = await doc(db, categoryCollectionName, "Categories");
+    const response = (await getDoc(oneDoc)).data();
+
+    allCategories = response;
+  } catch (e) {
+    alert(e);
+  }
+
+  console.log(allCategories);
+
+  return allCategories;
 };

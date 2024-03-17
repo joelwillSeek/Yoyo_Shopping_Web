@@ -1,6 +1,13 @@
+:root{
+    --secondary-color:#968f91;
+    --primary-color:#3b241f;
+    --accent:#d8b276;
+}
+
 .body{
     display: grid;
     grid-template-columns: repeat(5,1fr);
     justify-items: center;
     align-items: center;
+    
 }

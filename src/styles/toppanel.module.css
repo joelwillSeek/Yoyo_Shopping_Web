@@ -1,21 +1,25 @@
-:root{
-    --accent:red;
-}
-
 .adminButton{
-    background-color: transparent;
     transition: background-color ease 300ms;
-    color:var(--accent);
+    /* color:var(--primary-color); */
+    color: #fff;
     padding: 1rem;
     outline: none;
-    border: 1px solid var(--accent);
+    background-color: var(--secondary-color);
+    border: 0px;
     border-radius: 20px;
     font-weight: bolder;
+
 }
 
 .adminButton:hover{
-    background-color: red;
+    background-color: var(--accent);
     color: #fff;
+}
+
+.logo{
+    width: 80px;
+    margin: 0rem 1rem;
+    border-radius: 20px;
 }
 
 .nav{

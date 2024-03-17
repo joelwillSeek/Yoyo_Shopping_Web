@@ -1,0 +1,29 @@
+.adminContainer{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    max-width: 100%;
+    padding: 1rem;
+}
+
+.adminTabs{
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+}
+
+.adminTabs button{
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 1rem;
+    outline: none;
+    border: 0px;
+    border-radius: 20px;
+    font-weight: bolder;
+    margin: 0 1rem;
+    transition: background-color ease 300ms;
+}
+
+.adminTabs button:hover{
+    background-color: var(--accent);
+}
