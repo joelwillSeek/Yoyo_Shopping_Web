@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Body from "./components/Body";
 import TopPanel from "./components/TopPanel";
 import "./styles/general.css";
@@ -9,7 +9,12 @@ import {
   getAllProductsRegardlessOfCategory,
   getCategoriesList,
 } from "./firebase/firebaseBackEnd";
-import AdminPanel from "./components/AdminPanel";
+import AdminPanel from "./components/AdminPanel/AdminPanel";
+import Loading from "./components/Loading";
+import GlobalContextHolder, {
+  GlobalContextProvider,
+} from "./components/ContextHolder";
+import AddAProduct from "./components/AdminPanel/AddAProduct";
 
 const rootElement = document.getElementById("root");
 
@@ -17,6 +22,7 @@ let App = () => {
   let [getApi, setApi] = useState(null);
   let [searchTerm, setSearchTerm] = useState("");
   let [listOfCategories, setListOfCategories] = useState([]);
+  let { openDialog } = useContext(GlobalContextHolder);
 
   let getJsonFromApiForCategories = async (
     setApi: React.Dispatch<React.SetStateAction<any>>
@@ -40,6 +46,7 @@ let App = () => {
 
   return (
     <>
+      <Loading color={"#fc6f03"} />
       <TopPanel setSearch={setSearchTerm}></TopPanel>
       <div className="catagoriesContainer">
         {listOfCategories.map((category, index) => (
@@ -52,14 +59,18 @@ let App = () => {
 };
 
 createRoot(rootElement!).render(
-  <BrowserRouter>
-    <React.StrictMode>
-      {/* routes */}
-      <Routes>
-        <Route index path="/" element={<App />} />
-        <Route path="Admin" element={<AdminPanel />} />
-        <Route path="*" element={<h1>No Such Page</h1>} />
-      </Routes>
-    </React.StrictMode>
-  </BrowserRouter>
+  <GlobalContextProvider>
+    <BrowserRouter>
+      <React.StrictMode>
+        {/* routes */}
+        <Routes>
+          <Route index path="/" element={<App />} />
+          <Route path="Admin" element={<AdminPanel />}>
+            <Route path="AddAProduct" element={<AddAProduct />}></Route>
+          </Route>
+          <Route path="*" element={<h1>No Such Page</h1>} />
+        </Routes>
+      </React.StrictMode>
+    </BrowserRouter>
+  </GlobalContextProvider>
 );
