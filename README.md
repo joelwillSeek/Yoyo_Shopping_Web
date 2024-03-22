@@ -12,5 +12,6 @@
 
 <h1>Features already implemented</h1>
 <ul>
-<li></li>
+<li>Seeing Products</li>
+<li>Add Product by Admin</li>
 </ul>
