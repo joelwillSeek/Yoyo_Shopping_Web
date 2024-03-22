@@ -24,6 +24,6 @@ export const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
 
-export const storage = getStorage(app);
+export let storage = getStorage(app);
 
-export const imageRef = ref;
+export let imageRef = ref;

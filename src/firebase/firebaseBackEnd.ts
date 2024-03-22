@@ -121,15 +121,16 @@ export let getAllProductsRegardlessOfCategory = async (): Promise<
   return allProducts;
 };
 
-export let getCategoriesList = async (): Promise<DocumentData | undefined> => {
-  let allCategories: DocumentData | undefined;
+export let getCategoriesList = async (): Promise<DocumentData | null> => {
+  let allCategories: DocumentData | null = null;
   let categoryCollectionName = "Other";
 
   try {
     const oneDoc = await doc(db, categoryCollectionName, "Categories");
     const response = (await getDoc(oneDoc)).data();
 
-    allCategories = response;
+    if (response == undefined) allCategories = null;
+    else allCategories = response;
   } catch (e) {
     alert(e);
   }

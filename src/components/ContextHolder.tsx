@@ -1,8 +1,8 @@
 import React, { createContext, useState } from "react";
 
 const GlobalContextHolder = createContext({
-  openDialog: true,
-  setOpenDialog(openDialog: boolean) {},
+  openDialog: "",
+  setOpenDialog(openDialog: string) {},
 });
 
 export const GlobalContextProvider = ({
@@ -10,7 +10,7 @@ export const GlobalContextProvider = ({
 }: {
   children: JSX.Element | JSX.Element[];
 }) => {
-  let [openDialog, setOpenDialog] = useState(true);
+  let [openDialog, setOpenDialog] = useState("");
 
   return (
     <GlobalContextHolder.Provider value={{ openDialog, setOpenDialog }}>
