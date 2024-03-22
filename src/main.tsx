@@ -79,7 +79,7 @@ createRoot(rootElement!).render(
             ></Route>
             <Route
               path="UpdateAProduct"
-              element={<h1>Update A Product</h1>}
+              element={<h1>Update A Product </h1>}
             ></Route>
           </Route>
           <Route path="*" element={<h1>No Such Page</h1>} />
