@@ -19,7 +19,7 @@ const collectionName = "Products";
 export let addAProduct = async (product: Product) => {
   let result = false;
 
-  const { id, ...excludeId } = product;
+  const { ID, ...excludeId } = product;
   try {
     await addDoc(collection(db, collectionName), { ...excludeId }).then(
       (doc) => {
@@ -38,7 +38,7 @@ export let addAProduct = async (product: Product) => {
 export let removeAProduct = async (product: Product) => {
   let result = false;
   try {
-    await deleteDoc(doc(db, collectionName, `${product.id}`));
+    await deleteDoc(doc(db, collectionName, `${product.ID}`));
     result = true;
     alert("success");
   } catch (e) {
@@ -53,9 +53,9 @@ export let updateAProduct = async (product: Product) => {
   let result = false;
 
   try {
-    const { id, ...excludeId } = product;
+    const { ID, ...excludeId } = product;
 
-    const docRef = doc(db, collectionName, `${id}`);
+    const docRef = doc(db, collectionName, `${ID}`);
 
     await updateDoc(docRef, { ...excludeId });
     result = true;

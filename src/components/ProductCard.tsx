@@ -5,11 +5,21 @@ function ProductCard({
   price,
   title,
   image,
+  deletable,
 }: {
   price: number;
   title: string;
   image: string;
+  deletable: boolean;
 }) {
+  let deleteClicked = () => {
+    alert("delete");
+  };
+
+  let addToCartClicked = () => {
+    alert("add");
+  };
+
   return (
     <div className={styles.card}>
       <img src={image} className={styles.img} />
@@ -23,6 +33,12 @@ function ProductCard({
         </p>
         <p className={styles.price}>Price: ${price} Br</p>
       </div>
+      <button
+        className={deletable ? styles.deleteButton : styles.addToCartButton}
+        onClick={deletable ? deleteClicked : addToCartClicked}
+      >
+        {deletable ? "delete" : "Add to cart"}
+      </button>
     </div>
   );
 }

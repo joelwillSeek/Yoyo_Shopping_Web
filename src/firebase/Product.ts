@@ -1,5 +1,5 @@
 export default class Product {
-  id: string = "";
+  private id: string = "";
   title: string;
   price: number;
   image: string;

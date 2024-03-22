@@ -59,3 +59,23 @@
     max-height: 200px;
     border-radius: var(--corner-bend-amount);
 }
+
+.deleteButton{
+    color: #fff;
+    background: var(--primary-color);
+    transition: background-color ease 300ms;
+}
+
+.deleteButton:hover{
+    background-color: red;
+}
+
+.addToCartButton{
+    color: #fff;
+    background: var(--primary-color);
+    transition: background-color ease 300ms;
+}
+
+.addToCartButton:hover{
+    background-color: var(--accent);
+}

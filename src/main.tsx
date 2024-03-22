@@ -15,6 +15,7 @@ import GlobalContextHolder, {
   GlobalContextProvider,
 } from "./components/ContextHolder";
 import AddAProduct from "./components/AdminPanel/AddAProduct";
+import RemoveAProduct from "./components/AdminPanel/RemoveAProduct";
 
 const rootElement = document.getElementById("root");
 
@@ -73,10 +74,7 @@ createRoot(rootElement!).render(
           <Route index path="/" element={<App />} />
           <Route path="Admin" element={<AdminPanel />}>
             <Route path="AddAProduct" element={<AddAProduct />}></Route>
-            <Route
-              path="RemoveAProduct"
-              element={<h1>Remove A Product</h1>}
-            ></Route>
+            <Route path="RemoveAProduct" element={<RemoveAProduct />}></Route>
             <Route
               path="UpdateAProduct"
               element={<h1>Update A Product </h1>}
