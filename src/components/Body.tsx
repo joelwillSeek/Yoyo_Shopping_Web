@@ -30,10 +30,11 @@ export default function Body({
       {filteredData == null ? (
         <Loading color={"#fc6f03"} />
       ) : (
-        filteredData.map((product) => (
+        filteredData.map((product, index) => (
           <ProductCard
-            deletable={false}
-            key={product.ID}
+            deletable={null}
+            key={index}
+            id={product.ID}
             price={product.price}
             title={product.title}
             image={product.image}

@@ -41,13 +41,14 @@ const RemoveAProduct = () => {
         onChange={searchThoughProducts}
       />
       <div>
-        {filteredDataProductBySearch.map((product) => (
+        {filteredDataProductBySearch.map((product, index) => (
           <ProductCard
             price={product.price}
             image={product.image}
             title={product.title}
-            key={product.ID}
-            deletable={true}
+            id={product.ID}
+            key={index}
+            deletable={{ setFilteredProductBySearch, setAllProducts }}
           />
         ))}
       </div>

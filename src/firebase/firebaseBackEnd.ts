@@ -35,10 +35,10 @@ export let addAProduct = async (product: Product) => {
   return result;
 };
 
-export let removeAProduct = async (product: Product) => {
+export let removeAProduct = async (id: string) => {
   let result = false;
   try {
-    await deleteDoc(doc(db, collectionName, `${product.ID}`));
+    await deleteDoc(doc(db, collectionName, `${id}`));
     result = true;
     alert("success");
   } catch (e) {
