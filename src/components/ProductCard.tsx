@@ -17,8 +17,11 @@ function ProductCard({
   deletable: {
     setFilteredProductBySearch: React.Dispatch<React.SetStateAction<Product[]>>;
     setAllProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+    forUpdate: boolean;
   } | null;
 }) {
+  let updateClicked = () => {};
+
   let deleteClicked = () => {
     removeAProduct(id)
       .then((response) => {
@@ -44,6 +47,16 @@ function ProductCard({
     alert("add");
   };
 
+  function decideWhatTheCardIsUsedFor():
+    | React.MouseEventHandler<HTMLButtonElement>
+    | undefined {
+    if (deletable != null && !deletable.forUpdate) return deleteClicked;
+
+    if (deletable != null && deletable.forUpdate) return updateClicked;
+
+    return addToCartClicked;
+  }
+
   return (
     <div className={styles.card}>
       <img src={image} className={styles.img} />
@@ -61,7 +74,7 @@ function ProductCard({
         className={
           deletable != null ? styles.deleteButton : styles.addToCartButton
         }
-        onClick={deletable != null ? deleteClicked : addToCartClicked}
+        onClick={decideWhatTheCardIsUsedFor()}
       >
         {deletable != null ? "delete" : "Add to cart"}
       </button>

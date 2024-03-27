@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import GlobalContextHolder from "../ContextHolder";
-import { getAllProductsRegardlessOfCategory } from "../../firebase/firebaseBackEnd";
 import Product from "../../firebase/Product";
 import ProductCard from "../ProductCard";
 import {
@@ -8,15 +7,13 @@ import {
   searchThoughProducts,
 } from "./commonlyUsedFunctions";
 
-const RemoveAProduct = () => {
+export default function UpdateAProduct() {
+  let { setOpenDialog } = useContext(GlobalContextHolder);
   let [allProducts, setAllProducts] = useState<Product[]>([]);
+  let searchInputRef = useRef(null);
   let [filteredDataProductBySearch, setFilteredProductBySearch] = useState<
     Product[]
   >([]);
-
-  let searchInputRef = useRef(null);
-
-  let { setOpenDialog } = useContext(GlobalContextHolder);
 
   useEffect(() => {
     setOpenDialog("Getting Products");
@@ -54,13 +51,11 @@ const RemoveAProduct = () => {
             deletable={{
               setFilteredProductBySearch,
               setAllProducts,
-              forUpdate: false,
+              forUpdate: true,
             }}
           />
         ))}
       </div>
     </div>
   );
-};
-
-export default RemoveAProduct;
+}
