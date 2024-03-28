@@ -2,12 +2,35 @@
     --corner-bend-amount:10px
 }
 
+.updateButton{
+    color: #fff;
+    background: var(--primary-color);
+    transition: background-color ease 300ms;
+}
+
+.updateButton:hover{
+    background-color: var(--accent);
+}
+
 .groupOfCardContent{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
+}
+
+.imageInput{
+    display: none;
+}
+
+.labelImage{
+    cursor:grab;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100px;
+    height: 100px;
 }
 
 .title{
@@ -50,9 +73,12 @@
    
 }
 
-/* .card:hover{
-    border-color: var(--accent);
-} */
+.editableTitle{
+    padding: 1rem;
+    color: #000;
+    border-radius: 20px;
+
+}
 
 .img{
     max-width: 200px;

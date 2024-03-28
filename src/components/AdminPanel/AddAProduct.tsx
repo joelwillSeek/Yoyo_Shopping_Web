@@ -6,7 +6,6 @@ import styles from "../../styles/addaproduct.module.css";
 import { imageRef, storage } from "../../firebase/firebaseSDK";
 import { v4 } from "uuid";
 import {
-  UploadTask,
   UploadTaskSnapshot,
   getDownloadURL,
   uploadBytesResumable,

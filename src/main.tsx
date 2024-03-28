@@ -1,19 +1,11 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import Body from "./components/Body";
-import TopPanel from "./components/TopPanel";
 import "./styles/general.css";
-import Catagories from "./components/Catagories";
-import {
-  getAllProductsRegardlessOfCategory,
-  getCategoriesList,
-} from "./firebase/firebaseBackEnd";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
 import Loading from "./components/Loading";
-import GlobalContextHolder, {
-  GlobalContextProvider,
-} from "./components/ContextHolder";
+import { GlobalContextProvider } from "./components/ContextHolder";
 import AddAProduct from "./components/AdminPanel/AddAProduct";
 import RemoveAProduct from "./components/AdminPanel/RemoveAProduct";
 import UpdateAProduct from "./components/AdminPanel/UpdateAProduct";
