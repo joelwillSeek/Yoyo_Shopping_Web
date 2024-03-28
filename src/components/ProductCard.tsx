@@ -20,7 +20,9 @@ function ProductCard({
     forUpdate: boolean;
   } | null;
 }) {
-  let updateClicked = () => {};
+  let updateClicked = () => {
+    alert("update");
+  };
 
   let deleteClicked = () => {
     removeAProduct(id)
@@ -43,43 +45,91 @@ function ProductCard({
       .catch((error) => alert(error + " Cant Remove"));
   };
 
-  let addToCartClicked = () => {
+  const addToCartClicked = () => {
     alert("add");
   };
 
-  function decideWhatTheCardIsUsedFor():
+  const decideWhatTheButtonIsUsedFor = ():
     | React.MouseEventHandler<HTMLButtonElement>
-    | undefined {
+    | undefined => {
     if (deletable != null && !deletable.forUpdate) return deleteClicked;
 
     if (deletable != null && deletable.forUpdate) return updateClicked;
 
     return addToCartClicked;
-  }
+  };
 
-  return (
-    <div className={styles.card}>
-      <img src={image} className={styles.img} />
+  const decideWhatButtonSays = () => {
+    if (deletable != null && !deletable.forUpdate) return "delete";
 
-      <div className={styles.groupOfCardContent}>
-        <p className={styles.title}>{title}</p>
-        <p className={styles.description}>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias dolor
-          omnis iste maiores? Dolores maiores magni reiciendis voluptates dolor
-          exercitationem.
-        </p>
-        <p className={styles.price}>Price: ${price} Br</p>
+    if (deletable != null && deletable.forUpdate) return "update";
+
+    return "add to cart";
+  };
+
+  const decideWhatStyleToUse = () => {
+    if (deletable != null && !deletable.forUpdate) return styles.deleteButton;
+    if (deletable != null && deletable.forUpdate) return styles.updateButton;
+    return styles.addToCartButton;
+  };
+
+  const NotEditableCard = () => {
+    return (
+      <div className={styles.card}>
+        <img src={image} className={styles.img} />
+
+        <div className={styles.groupOfCardContent}>
+          <p className={styles.title}>{title}</p>
+          <p className={styles.description}>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias
+            dolor omnis iste maiores? Dolores maiores magni reiciendis
+            voluptates dolor exercitationem.
+          </p>
+          <p className={styles.price}>Price: ${price} Br</p>
+        </div>
+        <button
+          className={decideWhatStyleToUse()}
+          onClick={decideWhatTheButtonIsUsedFor()}
+        >
+          {decideWhatButtonSays()}
+        </button>
       </div>
-      <button
-        className={
-          deletable != null ? styles.deleteButton : styles.addToCartButton
-        }
-        onClick={decideWhatTheCardIsUsedFor()}
-      >
-        {deletable != null ? "delete" : "Add to cart"}
-      </button>
-    </div>
-  );
+    );
+  };
+
+  //make it editable
+
+  const EditableCard = () => {
+    return (
+      <div className={styles.card}>
+        <img src={image} className={styles.img} />
+
+        <div className={styles.groupOfCardContent}>
+          <p className={styles.title}>{title}</p>
+          <p className={styles.description}>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias
+            dolor omnis iste maiores? Dolores maiores magni reiciendis
+            voluptates dolor exercitationem.
+          </p>
+          <p className={styles.price}>Price: ${price} Br</p>
+        </div>
+        <button
+          className={decideWhatStyleToUse()}
+          onClick={decideWhatTheButtonIsUsedFor()}
+        >
+          {decideWhatButtonSays()}
+        </button>
+      </div>
+    );
+  };
+
+  const decideToBeEditable = () => {
+    if (deletable != null && deletable.forUpdate) return <EditableCard />;
+
+    return <NotEditableCard />;
+  };
+
+  return <>{decideToBeEditable()}</>;
 }
 
 export default ProductCard;
