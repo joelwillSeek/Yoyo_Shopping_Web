@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import styles from "../styles/toppanel.module.css";
-import "../assets/logo.png";
+import styles from "../../styles/toppanel.module.css";
+import "../../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 
 /**

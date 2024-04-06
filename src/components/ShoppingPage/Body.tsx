@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import styles from "../styles/body.module.css";
-import Loading from "./Loading";
-import ProductCard from "./ProductCard";
-import Product from "../firebase/Product";
+import styles from "../../styles/body.module.css";
+import Loading from "../ContextRelatedThings/Loading";
+import Product from "../../firebase/Product";
 import TopPanel from "./TopPanel";
-import { getCategoriesList } from "../firebase/firebaseBackEnd";
-import GlobalContextHolder from "./ContextHolder";
+import { getCategoriesList } from "../../firebase/firebaseBackEnd";
+import GlobalContextHolder from "../ContextRelatedThings/ContextHolder";
 import {
   initialSetupForSearchAbility,
   searchThoughProducts,
-} from "./AdminPanel/commonlyUsedFunctions";
+} from "../AdminPage/commonlyUsedFunctions";
 import Catagories from "./Catagories";
+import DisplayingAProduct from "../DifferentCardTypes/DisplayingAProduct";
 
 export default function Body(): React.JSX.Element {
   // let [filteredData, setFilter] = useState();
@@ -28,7 +28,11 @@ export default function Body(): React.JSX.Element {
     try {
       let response = await getCategoriesList();
       console.log(response ? ["List"] : null);
-      setApi(response ? ["List"] : null);
+      if (response) {
+        setApi(response["List"]);
+      } else {
+        setApi(null);
+      }
     } catch (e) {
       console.log(e);
     }
@@ -53,8 +57,20 @@ export default function Body(): React.JSX.Element {
     <div id="body" className={styles.entireBody}>
       <TopPanel setSearch={setSearchTerm}></TopPanel>
       <div className="catagoriesContainer">
+        <Catagories
+          name={"all"}
+          color={"#aaa"}
+          allProducts={allProducts}
+          setFilteredProductBySearch={setFilteredProductBySearch}
+        />
         {listOfCategories.map((category, index) => (
-          <Catagories key={index} name={category} color={"#aaa"}></Catagories>
+          <Catagories
+            key={index}
+            name={category}
+            color={"#aaa"}
+            allProducts={allProducts}
+            setFilteredProductBySearch={setFilteredProductBySearch}
+          ></Catagories>
         ))}
       </div>
 
@@ -63,10 +79,9 @@ export default function Body(): React.JSX.Element {
           <Loading color={"#fc6f03"} />
         ) : (
           filteredDataProductBySearch.map((product, index) => (
-            <ProductCard
-              deletable={null}
+            <DisplayingAProduct
               key={index}
-              id={product.ID}
+              description={product.description}
               price={product.price}
               title={product.title}
               image={product.image}

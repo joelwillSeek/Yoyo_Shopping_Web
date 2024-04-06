@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import { addAProduct } from "../../firebase/firebaseBackEnd";
 import Product from "../../firebase/Product";
-import GlobalContextHolder from "../ContextHolder";
+import GlobalContextHolder from "../ContextRelatedThings/ContextHolder";
 import styles from "../../styles/addaproduct.module.css";
 import { imageRef, storage } from "../../firebase/firebaseSDK";
 import { v4 } from "uuid";
@@ -62,7 +62,6 @@ export default function AddAProduct() {
             // setOpenDialog(false);
             return;
           }
-
           createAndAddTheProduct(passedUrl);
         });
       }

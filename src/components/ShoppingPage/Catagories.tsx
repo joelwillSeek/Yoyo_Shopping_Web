@@ -1,16 +1,36 @@
 import React from "react";
-import styles from "../styles/catagories.module.css";
+import styles from "../../styles/catagories.module.css";
+import Product from "../../firebase/Product";
 
 export default function Catagories({
   name,
   color,
+  allProducts,
+  setFilteredProductBySearch,
 }: {
   color: string;
   name: string;
+  allProducts: Product[];
+  setFilteredProductBySearch: React.Dispatch<React.SetStateAction<Product[]>>;
 }) {
-  //when hovering it didint change
+  function onCategoryClicked() {
+    console.log("All");
+    if (name == "all") {
+      setFilteredProductBySearch([...allProducts]);
+    } else {
+      const allFilteredCategory = allProducts.filter(
+        (product) => product.category.toLowerCase() == name.toLowerCase()
+      );
+      setFilteredProductBySearch([...allFilteredCategory]);
+    }
+  }
+
   return (
-    <div className={styles.category} style={{ backgroundColor: color }}>
+    <div
+      className={styles.category}
+      style={{ backgroundColor: color }}
+      onClick={onCategoryClicked}
+    >
       {getSearchSvg()} <p>{capitalize(name)}</p>
     </div>
   );

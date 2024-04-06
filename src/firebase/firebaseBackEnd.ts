@@ -8,7 +8,6 @@ import {
   query,
   where,
   DocumentData,
-  documentId,
   getDoc,
 } from "firebase/firestore";
 import { db } from "./firebaseSDK";
@@ -62,6 +61,7 @@ export let updateAProduct = async (product: Product) => {
     alert("success");
   } catch (e) {
     alert(e);
+    console.log("error here" + e);
   }
 
   return result;

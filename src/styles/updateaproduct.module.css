@@ -1,5 +1,19 @@
-:root{
-    --corner-bend-amount:10px
+.editableTitle,.editablePrice,.editableDescription,editablePrice{
+    padding: 1rem;
+    margin: 1rem;
+    color: #000;
+    border-radius: 20px;
+}
+
+
+.updateButton:hover{
+    background-color: var(--accent);
+}
+
+.updateButton{
+    color: #fff;
+    background: var(--primary-color);
+    transition: background-color ease 300ms;
 }
 
 .groupOfCardContent{
@@ -23,25 +37,6 @@
     height: 100px;
 }
 
-.title{
-    font-weight: bolder;
-    font-size:1rem;
-    margin: 1rem 0;
-}
-
-.description{
-    font-size: 0.8rem;
-    margin: 0;
-}
-
-.price{
-    align-self: start;
-    margin:0;
-    font-weight: bold;
-    font-size: small;
-    margin-top: 1rem;
-}
-
 .card{
     /* border: 2px solid #000; */
     /* border-radius: var(--corner-bend-amount); */
@@ -58,6 +53,7 @@
     color: #fff;
 }
 
+
 .card:hover{
     background-color: var(--primary-color);
    
@@ -67,24 +63,4 @@
     max-width: 200px;
     max-height: 200px;
     border-radius: var(--corner-bend-amount);
-}
-
-.deleteButton{
-    color: #fff;
-    background: var(--primary-color);
-    transition: background-color ease 300ms;
-}
-
-.deleteButton:hover{
-    background-color: red;
-}
-
-.addToCartButton{
-    color: #fff;
-    background: var(--primary-color);
-    transition: background-color ease 300ms;
-}
-
-.addToCartButton:hover{
-    background-color: var(--accent);
 }

@@ -1,26 +1,18 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
-import Body from "./components/Body";
+import Body from "./components/ShoppingPage/Body";
 import "./styles/general.css";
-import AdminPanel from "./components/AdminPanel/AdminPanel";
-import Loading from "./components/Loading";
-import { GlobalContextProvider } from "./components/ContextHolder";
-import AddAProduct from "./components/AdminPanel/AddAProduct";
-import RemoveAProduct from "./components/AdminPanel/RemoveAProduct";
-import UpdateAProduct from "./components/AdminPanel/UpdateAProduct";
+import AdminPanel from "./components/AdminPage/AdminPanel";
+import Loading from "./components/ContextRelatedThings/Loading";
+import { GlobalContextProvider } from "./components/ContextRelatedThings/ContextHolder";
+import AddAProduct from "./components/AdminPage/AddAProduct";
+import RemoveAProduct from "./components/AdminPage/RemoveAProduct";
+import UpdateAProduct from "./components/AdminPage/UpdateAProduct";
 
 const rootElement = document.getElementById("root");
 
 let App = () => {
-  // let [getApi, setApi] = useState(null);
-
-  // useEffect(() => {
-  //   setOpenDialog("Loading");
-  //   getJsonFromApi(setApi);
-  //   getJsonFromApiForCategories(setListOfCategories);
-  // }, []);
-
   return (
     <>
       <Loading color={"#fc6f03"} />

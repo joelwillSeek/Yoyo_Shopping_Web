@@ -1,22 +1,19 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import GlobalContextHolder from "../ContextHolder";
-import { getAllProductsRegardlessOfCategory } from "../../firebase/firebaseBackEnd";
+import GlobalContextHolder from "../ContextRelatedThings/ContextHolder";
 import Product from "../../firebase/Product";
-import ProductCard from "../ProductCard";
 import {
   initialSetupForSearchAbility,
   searchThoughProducts,
 } from "./commonlyUsedFunctions";
+import UpdateAProductCard from "../DifferentCardTypes/UpdateAProductCard";
 
-const RemoveAProduct = () => {
+export default function UpdateAProduct() {
+  let { setOpenDialog } = useContext(GlobalContextHolder);
   let [allProducts, setAllProducts] = useState<Product[]>([]);
+  let searchInputRef = useRef(null);
   let [filteredDataProductBySearch, setFilteredProductBySearch] = useState<
     Product[]
   >([]);
-
-  let searchInputRef = useRef(null);
-
-  let { setOpenDialog } = useContext(GlobalContextHolder);
 
   useEffect(() => {
     setOpenDialog("Getting Products");
@@ -35,32 +32,27 @@ const RemoveAProduct = () => {
         type="search"
         placeholder="Search For Product"
         ref={searchInputRef}
-        onChange={(event) =>
+        onChange={(event) => {
           searchThoughProducts(
             event.target.value,
             allProducts,
             setFilteredProductBySearch
-          )
-        }
+          );
+        }}
       />
       <div>
         {filteredDataProductBySearch.map((product, index) => (
-          <ProductCard
-            price={product.price}
+          <UpdateAProductCard
+            id={product.ID}
             image={product.image}
             title={product.title}
-            id={product.ID}
+            description={product.description}
             key={index}
-            deletable={{
-              setFilteredProductBySearch,
-              setAllProducts,
-              forUpdate: false,
-            }}
+            price={product.price}
+            category={product.category}
           />
         ))}
       </div>
     </div>
   );
-};
-
-export default RemoveAProduct;
+}

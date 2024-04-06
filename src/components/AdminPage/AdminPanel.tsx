@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import styles from "../../styles/adminstyle.module.css";
 import { Outlet, useNavigate } from "react-router-dom";
-import Loading from "../Loading";
-import GlobalContextHolder from "../ContextHolder";
+import Loading from "../ContextRelatedThings/Loading";
+import GlobalContextHolder from "../ContextRelatedThings/ContextHolder";
+import logo from "../../assets/logo.png";
 
 export default function AdminPanel() {
   const navigateTo = useNavigate();
@@ -18,7 +19,7 @@ export default function AdminPanel() {
     <>
       <Loading color={"orange"} />
       <div className={styles.adminContainer}>
-        <img src="./Logo.png" className={styles.adminLogo}></img>
+        <img src={logo} className={styles.adminLogo}></img>
         <h1>Admin Panel</h1>
         <div className={styles.adminTabs}>
           <button

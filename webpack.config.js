@@ -9,7 +9,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name][contenthash].js",
+    // commented this line because when nodemon refresh it shows file not found filename: "[name][contenthash].js",
+    filename: "[name].js",
     clean: true,
     assetModuleFilename: "[name][ext]",
   },

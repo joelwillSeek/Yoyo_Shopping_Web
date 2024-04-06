@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import styles from "../styles/Loading.module.css";
+import styles from "../../styles/Loading.module.css";
 import { ThreeCircles } from "react-loader-spinner";
 import GlobalContextHolder from "./ContextHolder";
 

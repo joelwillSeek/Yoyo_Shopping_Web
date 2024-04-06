@@ -1,19 +1,21 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import GlobalContextHolder from "../ContextHolder";
+import GlobalContextHolder from "../ContextRelatedThings/ContextHolder";
 import Product from "../../firebase/Product";
-import ProductCard from "../ProductCard";
 import {
   initialSetupForSearchAbility,
   searchThoughProducts,
 } from "./commonlyUsedFunctions";
+import RemovingAProductCard from "../DifferentCardTypes/RemovingAProductCard";
 
-export default function UpdateAProduct() {
-  let { setOpenDialog } = useContext(GlobalContextHolder);
+const RemoveAProduct = () => {
   let [allProducts, setAllProducts] = useState<Product[]>([]);
-  let searchInputRef = useRef(null);
   let [filteredDataProductBySearch, setFilteredProductBySearch] = useState<
     Product[]
   >([]);
+
+  let searchInputRef = useRef(null);
+
+  let { setOpenDialog } = useContext(GlobalContextHolder);
 
   useEffect(() => {
     setOpenDialog("Getting Products");
@@ -42,20 +44,33 @@ export default function UpdateAProduct() {
       />
       <div>
         {filteredDataProductBySearch.map((product, index) => (
-          <ProductCard
+          // <ProductCard
+          //   price={product.price}
+          //   image={product.image}
+          //   title={product.title}
+          //   id={product.ID}
+          //   key={index}
+          //   deletable={{
+          //     setFilteredProductBySearch,
+          //     setAllProducts,
+          //     forUpdate: false,
+          //   }}
+          // />
+
+          <RemovingAProductCard
+            setFilteredProductBySearch={setFilteredProductBySearch}
             price={product.price}
+            setAllProducts={setAllProducts}
+            description={product.description}
             image={product.image}
             title={product.title}
             id={product.ID}
             key={index}
-            deletable={{
-              setFilteredProductBySearch,
-              setAllProducts,
-              forUpdate: true,
-            }}
           />
         ))}
       </div>
     </div>
   );
-}
+};
+
+export default RemoveAProduct;
