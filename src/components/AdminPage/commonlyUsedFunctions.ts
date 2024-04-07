@@ -1,5 +1,8 @@
 import Product from "../../firebase/Product";
-import { getAllProductsRegardlessOfCategory } from "../../firebase/firebaseBackEnd";
+import {
+  getAllProductsRegardlessOfCategory,
+  getCategoriesList,
+} from "../../firebase/firebaseBackEnd";
 
 export const searchThoughProducts = (
   searchTerm: string,

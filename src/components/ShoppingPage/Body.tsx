@@ -22,9 +22,9 @@ export default function Body(): React.JSX.Element {
     Product[]
   >([]);
 
-  let getJsonFromApiForCategories = async (
+  async function getJsonFromApiForCategories(
     setApi: React.Dispatch<React.SetStateAction<any>>
-  ) => {
+  ) {
     try {
       let response = await getCategoriesList();
       console.log(response ? ["List"] : null);
@@ -36,7 +36,7 @@ export default function Body(): React.JSX.Element {
     } catch (e) {
       console.log(e);
     }
-  };
+  }
 
   useEffect(() => {
     setOpenDialog("Getting Products");

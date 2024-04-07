@@ -43,8 +43,6 @@
 }
 
 .card{
-    /* border: 2px solid #000; */
-    /* border-radius: var(--corner-bend-amount); */
     width: 300px;
     justify-content: center;
     align-items: center;
@@ -60,7 +58,6 @@
 
 .card:hover{
     background-color: var(--primary-color);
-   
 }
 
 .img{

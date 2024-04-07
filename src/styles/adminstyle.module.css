@@ -30,3 +30,7 @@
 .adminLogo{
     width: 100px;
 }
+
+.signOut:hover{
+    background-color: red!important;
+}

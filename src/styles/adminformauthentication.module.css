@@ -1,0 +1,56 @@
+.adminAuthForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.adminAuthForm input{
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 20px;
+    outline: none;
+    border: 3px solid transparent;
+    color: #fff;
+    background-color: var(--primary-color);
+    transition: background-color ease 300ms,border ease 300ms;
+    font-weight: bolder;
+}
+
+
+.adminAuthForm input::placeholder{
+    color: #ffffffa2;
+}
+
+.adminAuthForm input[type="password"],.adminAuthForm input[type="email"]:hover{
+    border-color: var(--accent);
+}
+
+.adminAuthForm input[type="submit"]:hover{
+    background-color: var(--accent);
+}
+
+.dialogAuthForm::backdrop{
+    background-color: #0000008c;
+}
+
+.dialogAuthForm{
+    border: 0;
+    border-radius: 20px;
+}
+
+.cancelButton:hover{
+    background-color: red;
+}
+
+.signFormTitle{
+    font-weight: bolder;
+    font-size: 1.5rem;
+    margin: 1rem;
+}
+
+.horizontalGroup{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

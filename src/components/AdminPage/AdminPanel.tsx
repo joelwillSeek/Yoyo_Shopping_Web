@@ -4,15 +4,24 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Loading from "../ContextRelatedThings/Loading";
 import GlobalContextHolder from "../ContextRelatedThings/ContextHolder";
 import logo from "../../assets/logo.png";
+import { auth } from "../../firebase/firebaseSDK";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 
 export default function AdminPanel() {
   const navigateTo = useNavigate();
-
   let { setOpenDialog } = useContext(GlobalContextHolder);
 
   useEffect(() => {
-    setOpenDialog("");
-    navigateTo("AddAProduct");
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        //signed in
+        setOpenDialog("");
+        navigateTo("AddAProduct");
+      } else {
+        //signed out
+        navigateTo("/");
+      }
+    });
   }, []);
 
   return (
@@ -20,7 +29,7 @@ export default function AdminPanel() {
       <Loading color={"orange"} />
       <div className={styles.adminContainer}>
         <img src={logo} className={styles.adminLogo}></img>
-        <h1>Admin Panel</h1>
+        {/* <h1>Admin Panel</h1> */}
         <div className={styles.adminTabs}>
           <button
             onClick={() => {
@@ -45,10 +54,20 @@ export default function AdminPanel() {
           </button>
           <button
             onClick={() => {
-              navigateTo("/");
+              navigateTo("SeeAllProducts");
             }}
           >
-            Go To Customer View
+            See All Products
+          </button>
+          <button
+            className={styles.signOut}
+            onClick={() => {
+              signOut(auth)
+                .then(() => navigateTo("/"))
+                .catch((error) => alert("Sign Out Error: " + error));
+            }}
+          >
+            Sign Out
           </button>
         </div>
       </div>

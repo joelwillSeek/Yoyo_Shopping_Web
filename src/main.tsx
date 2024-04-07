@@ -9,6 +9,7 @@ import { GlobalContextProvider } from "./components/ContextRelatedThings/Context
 import AddAProduct from "./components/AdminPage/AddAProduct";
 import RemoveAProduct from "./components/AdminPage/RemoveAProduct";
 import UpdateAProduct from "./components/AdminPage/UpdateAProduct";
+import SeeAllProducts from "./components/AdminPage/SeeAllProducts";
 
 const rootElement = document.getElementById("root");
 
@@ -32,6 +33,7 @@ createRoot(rootElement!).render(
             <Route path="AddAProduct" element={<AddAProduct />}></Route>
             <Route path="RemoveAProduct" element={<RemoveAProduct />}></Route>
             <Route path="UpdateAProduct" element={<UpdateAProduct />}></Route>
+            <Route path="SeeAllProducts" element={<SeeAllProducts />}></Route>
           </Route>
           <Route path="*" element={<h1>No Such Page</h1>} />
         </Routes>
