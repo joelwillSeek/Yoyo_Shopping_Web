@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jersey+10&display=swap');
+
+.landingPage {
+    width: 100%;
+    height: 100vh;
+    background-size: cover!important;
+    background-position: center!important;
+    background-repeat: no-repeat!important;
+    background-size: cover!important;
+}
+
+.Logo{
+    width: 100px;
+}
+
+.navigationBar{
+    background-color: #00000080;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.adminButton{
+    background-color: transparent;
+    outline: none;
+    border: 3px solid transparent;
+    font-size: large;
+    font-weight: bolder;
+    color: #fff;
+    margin: 1rem;
+    border-radius: 20px;
+    transition: color ease-in-out 300ms,border-color ease-in-out 300ms;
+    padding:1rem;
+}
+
+.adminButton:hover{
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.landingPageText{
+    display: flex;
+    flex-direction: column;
+    padding: 15rem;
+}
+
+.landingPageText h1{
+    font-size: 6rem;
+    color: #fff;
+    margin: 0;
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.landingPageText p{
+    color: #fff;
+    font-size: 2rem;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.landingPageText button{
+    align-self: start!important;
+    padding: 1rem 2rem;
+    font-weight: bolder;
+    font-size: large;
+    outline: none;
+    background-color: transparent;
+    border: 3px solid var(--primary-color);
+    color: var(--primary-color);
+    transition: border-color ease-in-out 300ms,background-color ease-in-out 300ms;
+}
+
+.landingPageText button:hover{
+    background-color: var(--accent);
+    border-color:transparent ;
+}

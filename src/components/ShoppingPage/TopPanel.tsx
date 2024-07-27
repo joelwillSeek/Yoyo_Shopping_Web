@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "../../styles/toppanel.module.css";
-import "../../assets/logo.png";
+import Logo from "../../assets/logo.png";
 import AdminFormAuthentication from "./AdminFormAuthentication";
 
 /**
@@ -23,7 +23,7 @@ export default function TopPanel({
     <>
       <nav className={styles.nav}>
         <div className={styles.adminAndSearchDiv}>
-          <img src={"./logo.png"} alt="Logo" className={styles.logo} />
+          <img src={Logo} alt="Logo" className={styles.logo} />
           <input
             type="search"
             onChange={(e) => setSearch(e.target.value)}

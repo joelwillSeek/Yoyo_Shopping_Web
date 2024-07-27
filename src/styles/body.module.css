@@ -1,15 +1,8 @@
-:root{
-    --secondary-color:#968f91;
-    --primary-color:#3b241f;
-    --accent:#d8b276;
-}
-
 .entireBody{
     display: flex;
     width: 100%;
     height: 100%;
     flex-direction: column;
-    
 }
 
 .body{

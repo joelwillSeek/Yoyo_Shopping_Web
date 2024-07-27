@@ -2,7 +2,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
 import Body from "./components/ShoppingPage/Body";
-import "./styles/general.css";
+import "./general.css";
 import AdminPanel from "./components/AdminPage/AdminPanel";
 import Loading from "./components/ContextRelatedThings/Loading";
 import { GlobalContextProvider } from "./components/ContextRelatedThings/ContextHolder";
@@ -10,6 +10,8 @@ import AddAProduct from "./components/AdminPage/AddAProduct";
 import RemoveAProduct from "./components/AdminPage/RemoveAProduct";
 import UpdateAProduct from "./components/AdminPage/UpdateAProduct";
 import SeeAllProducts from "./components/AdminPage/SeeAllProducts";
+import LandingPage from "./components/LandingPage/LandingPage";
+import ShoppingArea from "./components/ShoppingPage/ShoppingArea";
 
 const rootElement = document.getElementById("root");
 
@@ -18,7 +20,11 @@ let App = () => {
     <>
       <Loading color={"#fc6f03"} />
 
-      <Body></Body>
+      <LandingPage></LandingPage>
+
+      <ShoppingArea></ShoppingArea>
+
+      {/* <Body></Body> */}
     </>
   );
 };

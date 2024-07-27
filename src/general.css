@@ -1,3 +1,9 @@
+:root{
+    --secondary-color:#000;
+    --primary-color:#fff;
+    --accent:#FFB642;
+}
+
 body{
     margin: 0;
     padding: 0;

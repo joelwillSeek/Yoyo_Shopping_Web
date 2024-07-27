@@ -22,37 +22,6 @@ export default function Body(): React.JSX.Element {
     Product[]
   >([]);
 
-  async function getJsonFromApiForCategories(
-    setApi: React.Dispatch<React.SetStateAction<any>>
-  ) {
-    try {
-      let response = await getCategoriesList();
-      console.log(response ? ["List"] : null);
-      if (response) {
-        setApi(response["List"]);
-      } else {
-        setApi(null);
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  useEffect(() => {
-    setOpenDialog("Getting Products");
-    getJsonFromApiForCategories(setListOfCategories);
-    initialSetupForSearchAbility(
-      setFilteredProductBySearch,
-      setAllProducts
-    ).then(() => {
-      setOpenDialog("");
-    });
-  }, []);
-
-  useEffect(() => {
-    searchThoughProducts(searchTerm, allProducts, setFilteredProductBySearch);
-  }, [searchTerm]);
-
   return (
     <div id="body" className={styles.entireBody}>
       <TopPanel setSearch={setSearchTerm}></TopPanel>
